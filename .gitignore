@@ -1,0 +1,50 @@
+# Python caches and environments
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.mypy_cache/
+.ruff_cache/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Pytest / coverage caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Raw dataset files (immutable, do not commit large CSVs by default)
+Dataset/*.csv
+Dataset/*.zip
+Dataset/*.7z
+
+# Generated processed data, serialized model artifacts, and runtime outputs
+models/*/processed_data/
+models/*/artifacts/
+models/*/results/
+comparison/results/
+outputs/
+reports/
+presentation/
+# Keep shared/manifests in version control: reproducible splits and audit evidence.
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp

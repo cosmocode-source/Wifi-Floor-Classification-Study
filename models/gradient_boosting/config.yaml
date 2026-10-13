@@ -1,0 +1,148 @@
+# Configuration for Stage 4: Classical Gradient Boosting (gradient_boosting)
+# Reference paper anchor: "Indoor Positioning System Using Wifi Fingerprint" (Dan Li, Le Wang, Shiqi Wu)
+#
+# Methodological & Scientific Notes:
+# 1. Estimator family: strictly `sklearn.ensemble.GradientBoostingClassifier` on CPU.
+#    XGBoost and HistGradientBoostingClassifier are never substituted.
+# 2. Input representation: cleaned raw WAP001..WAP520 features with finite sentinel replacement
+#    (100 -> -110.0 dBm; genuine 0 dBm preserved as 0.0). No PCA or StandardScaler is applied
+#    by default. Classical GradientBoostingClassifier requires finite inputs and has no native NaN handling.
+# 3. Full-pipeline comparison: this module compares a raw-feature classical gradient boosting pipeline
+#    against the PCA-reduced kNN pipelines (pca_knn and pca_weighted_knn); it is NOT an isolated
+#    estimator-only comparison on identical PCA-transformed features.
+# 4. Paper-inspired starting configuration: `max_depth=4` and `n_estimators=189` are paper-inspired;
+#    `learning_rate=0.1`, `min_samples_leaf=1`, `subsample=1.0`, `max_features=null`, and
+#    `n_iter_no_change=null` (no early stopping) are documented implementation assumptions because
+#    the reference paper's boosting implementation is incompletely specified.
+
+model_id: "gradient_boosting"
+model_family: "Classical Gradient Boosting (sklearn.ensemble.GradientBoostingClassifier)"
+
+estimator:
+  class_name: "sklearn.ensemble.GradientBoostingClassifier"
+  loss: "log_loss"
+  criterion: "friedman_mse"
+  n_iter_no_change: null
+  early_stopping_enabled: false
+  native_nan_handling_claimed: false
+
+preprocessing:
+  predictor_columns: "WAP001..WAP520"
+  num_wap_features: 520
+  sentinel_value: 100
+  replacement_value: -110.0
+  replacement_is_assumption: true
+  preserve_genuine_zero_dbm: true
+  scale: false
+  use_pca: false
+  n_components: null
+  fit_scope: "training_partition_only"
+  pipeline_comparison_note: >
+    Full-pipeline comparison: raw sentinel-replaced WAP001..WAP520 features into classical
+    GradientBoostingClassifier versus PCA-reduced features into kNN. Not an isolated
+    estimator-only comparison on identical feature spaces.
+
+# Starting paper-inspired baseline evaluated and saved separately alongside tuned search
+fixed_baseline:
+  name: "paper_inspired_starting_gb"
+  description: >
+    Paper-inspired starting classical GradientBoostingClassifier: max_depth=4 and n_estimators=189
+    (from reference paper discussion), with learning_rate=0.1, min_samples_leaf=1, subsample=1.0,
+    max_features=null, no early stopping, and raw sentinel-replaced WAP features (100 -> -110.0,
+    no PCA, no StandardScaler) as documented implementation assumptions.
+  n_estimators: 189
+  learning_rate: 0.1
+  max_depth: 4
+  min_samples_leaf: 1
+  subsample: 1.0
+  max_features: null
+  scale: false
+  use_pca: false
+  n_components: null
+  n_iter_no_change: null
+  paper_inspired_fields:
+    - "max_depth=4"
+    - "n_estimators=189"
+  implementation_assumption_fields:
+    - "learning_rate=0.1"
+    - "min_samples_leaf=1"
+    - "subsample=1.0"
+    - "max_features=null"
+    - "n_iter_no_change=null (no early stopping)"
+    - "sentinel_replacement: 100 -> -110.0 dBm without PCA or StandardScaler"
+
+# Candidate hyperparameter space (24 total combinations in full Cartesian product;
+# bounded via deterministic seeded randomized sampling without replacement by default)
+tuned_space:
+  n_estimators: [100, 189, 300]
+  learning_rate: [0.05, 0.1]
+  max_depth: [3, 4]
+  min_samples_leaf: [1, 5]
+  subsample: [1.0]
+  max_features: [null]
+  scale: false
+  use_pca: false
+  n_components: null
+
+# Staged laptop-friendly search profiles (deterministic randomized sampling; no exhaustive grid by default)
+search_profiles:
+  smoke:
+    description: "Minimal smoke check: 3-fold CV with 2 deterministic sampled trials per building."
+    cv_folds: 3
+    search_strategy: "deterministic_random"
+    n_trials: 2
+    include_starting_config_in_pool: true
+    n_estimators: [100, 189]
+    learning_rate: [0.1]
+    max_depth: [3, 4]
+    min_samples_leaf: [1]
+
+  lightweight:
+    description: "Laptop-friendly lightweight search: 3-fold CV and 8 deterministic randomized trials."
+    cv_folds: 3
+    search_strategy: "deterministic_random"
+    n_trials: 8
+    include_starting_config_in_pool: true
+    n_estimators: [100, 189, 300]
+    learning_rate: [0.05, 0.1]
+    max_depth: [3, 4]
+    min_samples_leaf: [1, 5]
+
+  full:
+    description: "Full development search: 5-fold CV and 16 deterministic randomized trials from the 24-combination space."
+    cv_folds: 5
+    search_strategy: "deterministic_random"
+    n_trials: 16
+    include_starting_config_in_pool: true
+    n_estimators: [100, 189, 300]
+    learning_rate: [0.05, 0.1]
+    max_depth: [3, 4]
+    min_samples_leaf: [1, 5]
+
+default_profile: "full"
+
+# Deterministic model selection and tie-breaking hierarchy (matches kNN primary/tie-breaker rules)
+selection_policy:
+  primary_metric: "mean_cv_accuracy"
+  tie_breaker_metric: "mean_cv_macro_f1"
+  tolerance: 1.0e-9
+  further_tie_breakers_in_order:
+    - "smaller max_depth (shallower trees / lower model complexity)"
+    - "smaller n_estimators (fewer boosting stages)"
+    - "larger min_samples_leaf (stronger leaf regularization)"
+    - "smaller learning_rate"
+    - "earlier candidate_index in deterministic sample order"
+
+# Parallelism & memory limits (ASUS A15 CPU-only policy: GradientBoostingClassifier is single-threaded)
+parallelism:
+  search_workers: 1
+  blas_threads: 1
+  allow_nested_parallelism: false
+  gpu_used: false
+  rule: "search_workers must be a positive integer >= 1 (all-core -1 is prohibited)."
+
+# Default module relative paths
+paths:
+  processed_data_dir: "models/gradient_boosting/processed_data"
+  artifacts_dir: "models/gradient_boosting/artifacts"
+  results_dir: "models/gradient_boosting/results"

@@ -1,0 +1,51 @@
+# Comparison Builder & Academic Reporting Configuration (`comparison/config.yaml`)
+# Stage 5 — Revisiting WiFi Fingerprint Floor Classification with PCA-kNN and Gradient Boosting
+
+comparison:
+  schema_version: "1.0"
+  require_explicit_paths: true
+  allow_latest_auto_discovery: false
+  strict_row_alignment: true
+  strict_label_consistency: true
+  strict_metric_recomputation: true
+  metric_tolerance: 1.0e-7
+  required_model_ids:
+    - "pca_knn"
+    - "pca_weighted_knn"
+    - "gradient_boosting"
+  expected_target_column: "FLOOR"
+  expected_building_selector: "BUILDINGID"
+  expected_buildings: [0, 1, 2]
+  selection_protocol:
+    primary_metric: "mean_cv_accuracy"
+    tie_breaker_metric: "mean_cv_macro_f1"
+    selection_split_role: "dev_train"
+    holdout_retuning_permitted: false
+
+preprocessing_disclosure:
+  knn_family_models:
+    - "pca_knn"
+    - "pca_weighted_knn"
+  raw_feature_models:
+    - "gradient_boosting"
+  require_matching_knn_encoding: true
+  disclose_pca_vs_raw_features: true
+  k1_trivial_weighting_note: >-
+    At k=1, inverse-distance weighting assigns 100% weight to the single nearest neighbor
+    and is mathematically identical to uniform 1NN. Any k=1 comparison is reported as an
+    equivalence check rather than a multi-neighbor voting improvement.
+
+plots:
+  generate_svg: true
+  generate_png: true
+  dpi: 160
+  validation_curve_terminology: "supervised_classification_cv_validation_curve_not_clustering_elbow"
+  avoid_mixed_pca_scaling_in_k_curve: true
+  require_comparable_timing_scope_for_runtime_plot: true
+
+reporting:
+  draft_banner_when_pending: "DRAFT — RESULTS PENDING (NO EXPERIMENTAL NUMBERS FABRICATED)"
+  supported_writeup_lengths:
+    - "one-page"
+    - "two-page"
+  suggested_slide_count_range: [8, 10]
