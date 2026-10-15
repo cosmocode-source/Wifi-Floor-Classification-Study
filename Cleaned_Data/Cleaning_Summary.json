@@ -1,0 +1,23 @@
+{
+  "transformation": "WAP values of 100 -> -110; genuine zeros preserved",
+  "learned_preprocessing": "None. PCA is fitted only during KNN training/CV.",
+  "rows_dropped": 0,
+  "files": {
+    "Training.csv": {
+      "source_name": "trainingData.csv",
+      "source_sha256": "45ca0128bd12019c976bb4793e407c979c82995d7a5940ab7288620247905168",
+      "prepared_sha256": "ce1e30c44c3ac6a96fd88a79217057170ef94556b25696199420fac63d21dae9",
+      "rows": 19937,
+      "columns": 529,
+      "sentinel_cells_replaced": 10008477
+    },
+    "Validation.csv": {
+      "source_name": "validationData.csv",
+      "source_sha256": "5f90c536648cd657b2c516d20c4e0968d4003279ea6bd5d5d5322d3f1e8905c0",
+      "prepared_sha256": "c97a8f2d9b90b0ffcbba36e676c272f1d2ec449c3f3b9574395b0071a20daca8",
+      "rows": 1111,
+      "columns": 529,
+      "sentinel_cells_replaced": 559416
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "training_sha256": "ce1e30c44c3ac6a96fd88a79217057170ef94556b25696199420fac63d21dae9",
+  "fold_file_sha256": "35cb6a32cbb2b3606218c641e4db516d96c7acc189742d74217e6df34664b0cd",
+  "cv_folds": 3,
+  "seed": 42,
+  "groups": 836,
+  "definition": "Connected exact building/location/floor keys and identical WAP vectors, including cross-building duplicates",
+  "stratification": "BUILDINGID + FLOOR; training labels only"
+}

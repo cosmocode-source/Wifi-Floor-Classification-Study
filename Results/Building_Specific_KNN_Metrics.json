@@ -1,0 +1,198 @@
+{
+  "model_id": "Building_Specific_KNN",
+  "architecture": "Building_Specific",
+  "model": "KNN",
+  "evaluation_role": "official_validation_benchmark",
+  "validation_already_inspected": true,
+  "evaluated_utc": "2026-10-15T08:44:32.315384+00:00",
+  "training_sha256": "ce1e30c44c3ac6a96fd88a79217057170ef94556b25696199420fac63d21dae9",
+  "validation_sha256": "c97a8f2d9b90b0ffcbba36e676c272f1d2ec449c3f3b9574395b0071a20daca8",
+  "artifact_hashes": {
+    "0": "030aa617cf86fd6e5839dd0f3a017b8176bd5254a37e5fb426a1b2b75ad44a21",
+    "1": "9eea591ea0bf9265e0057a9ace3805cef8ef5d787b44e89d75bf1c0885e7f0fd",
+    "2": "22cad5f93f27f6c1789a09d46ce468c708c91c64eb61f77ca9ad5ebfdacaad19"
+  },
+  "pooled": {
+    "rows": 1111,
+    "correct": 1003,
+    "errors": 108,
+    "accuracy": 0.9027902790279028,
+    "macro_f1": 0.8965766146693644,
+    "floor_labels": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "confusion_matrix": [
+      [
+        113,
+        11,
+        8,
+        0,
+        0
+      ],
+      [
+        8,
+        406,
+        44,
+        4,
+        0
+      ],
+      [
+        1,
+        7,
+        286,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        167,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        6,
+        31
+      ]
+    ]
+  },
+  "buildings": {
+    "0": {
+      "rows": 536,
+      "correct": 517,
+      "errors": 19,
+      "accuracy": 0.9645522388059702,
+      "macro_f1": 0.9636966540843124,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "confusion_matrix": [
+        [
+          74,
+          2,
+          2,
+          0
+        ],
+        [
+          5,
+          201,
+          2,
+          0
+        ],
+        [
+          1,
+          5,
+          159,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          83
+        ]
+      ]
+    },
+    "1": {
+      "rows": 307,
+      "correct": 237,
+      "errors": 70,
+      "accuracy": 0.7719869706840391,
+      "macro_f1": 0.7699746314037611,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "confusion_matrix": [
+        [
+          17,
+          7,
+          6,
+          0
+        ],
+        [
+          3,
+          96,
+          42,
+          2
+        ],
+        [
+          0,
+          1,
+          79,
+          7
+        ],
+        [
+          0,
+          0,
+          2,
+          45
+        ]
+      ]
+    },
+    "2": {
+      "rows": 268,
+      "correct": 249,
+      "errors": 19,
+      "accuracy": 0.9291044776119403,
+      "macro_f1": 0.9143252985289436,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "confusion_matrix": [
+        [
+          22,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          109,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          48,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          39,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          6,
+          31
+        ]
+      ]
+    }
+  },
+  "predictions_sha256": "cc701f1bcfa58e56dec73cb4cbd96e73c46f9790cf1783f5418a3cafd1787fc1"
+}

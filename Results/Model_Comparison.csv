@@ -1,0 +1,5 @@
+Model,Rows,Correct,Errors,Accuracy_percent,Macro_F1_percent
+Building-specific PCA-kNN,1111,1003,108,90.279,89.6577
+Building-specific Random Forest,1111,1011,100,90.9991,89.6029
+Combined-building PCA-kNN,1111,996,115,89.649,88.8563
+Combined-building Random Forest,1111,1012,99,91.0891,89.9151

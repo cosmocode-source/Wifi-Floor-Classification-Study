@@ -1,0 +1,198 @@
+{
+  "model_id": "Building_Specific_Random_Forest",
+  "architecture": "Building_Specific",
+  "model": "Random_Forest",
+  "evaluation_role": "official_validation_benchmark",
+  "validation_already_inspected": true,
+  "evaluated_utc": "2026-10-15T08:44:33.151655+00:00",
+  "training_sha256": "ce1e30c44c3ac6a96fd88a79217057170ef94556b25696199420fac63d21dae9",
+  "validation_sha256": "c97a8f2d9b90b0ffcbba36e676c272f1d2ec449c3f3b9574395b0071a20daca8",
+  "artifact_hashes": {
+    "0": "861b4e562edc381b23b63fb225061711811f548ab638f0e2aeb156b80e8b5202",
+    "1": "538d2f1b5b7574298478e522d23d6a46582bde39919485e4dad8c2e85e7f8f17",
+    "2": "d4854c9095e397e7134885899ce47e32b18249bbee58d672a0d4bb0e824d4156"
+  },
+  "pooled": {
+    "rows": 1111,
+    "correct": 1011,
+    "errors": 100,
+    "accuracy": 0.90999099909991,
+    "macro_f1": 0.8960287721815261,
+    "floor_labels": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "confusion_matrix": [
+      [
+        117,
+        7,
+        8,
+        0,
+        0
+      ],
+      [
+        5,
+        408,
+        47,
+        2,
+        0
+      ],
+      [
+        0,
+        5,
+        293,
+        8,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        165,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        9,
+        28
+      ]
+    ]
+  },
+  "buildings": {
+    "0": {
+      "rows": 536,
+      "correct": 521,
+      "errors": 15,
+      "accuracy": 0.9720149253731343,
+      "macro_f1": 0.9705421512120613,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "confusion_matrix": [
+        [
+          73,
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          203,
+          2,
+          0
+        ],
+        [
+          0,
+          3,
+          162,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          83
+        ]
+      ]
+    },
+    "1": {
+      "rows": 307,
+      "correct": 248,
+      "errors": 59,
+      "accuracy": 0.8078175895765473,
+      "macro_f1": 0.8334663788852856,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "confusion_matrix": [
+        [
+          23,
+          2,
+          5,
+          0
+        ],
+        [
+          1,
+          97,
+          43,
+          2
+        ],
+        [
+          0,
+          1,
+          85,
+          1
+        ],
+        [
+          0,
+          0,
+          4,
+          43
+        ]
+      ]
+    },
+    "2": {
+      "rows": 268,
+      "correct": 242,
+      "errors": 26,
+      "accuracy": 0.9029850746268657,
+      "macro_f1": 0.8808891126439378,
+      "floor_labels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "confusion_matrix": [
+        [
+          21,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          108,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          46,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          39,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          9,
+          28
+        ]
+      ]
+    }
+  },
+  "predictions_sha256": "d35f8011928783485ecbe61038c0a0a1235b152d936b87b33b39d00f4e106677"
+}
