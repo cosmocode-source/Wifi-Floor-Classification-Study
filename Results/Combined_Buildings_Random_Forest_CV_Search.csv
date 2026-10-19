@@ -1,5 +1,0 @@
-partition,parameters,mean_cv_accuracy,std_cv_accuracy,mean_cv_macro_f1,selected
-All_Buildings,"{""classifier__max_depth"": null, ""classifier__min_samples_leaf"": 1}",0.9390532371363453,0.014467582594928918,0.8640490510934992,True
-All_Buildings,"{""classifier__max_depth"": null, ""classifier__min_samples_leaf"": 5}",0.9138143444484491,0.008942678952561532,0.8051596634500755,False
-All_Buildings,"{""classifier__max_depth"": 20, ""classifier__min_samples_leaf"": 1}",0.9062254711591162,0.020173480440581256,0.8316709553118559,False
-All_Buildings,"{""classifier__max_depth"": 20, ""classifier__min_samples_leaf"": 5}",0.8772054511723364,0.02158964337338492,0.7743422266126618,False

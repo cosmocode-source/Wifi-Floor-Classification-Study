@@ -1,0 +1,84 @@
+{
+  "status": "complete",
+  "versions": {
+    "python": "3.13.14",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "sklearn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "training_sha256": "45ca0128bd12019c976bb4793e407c979c82995d7a5940ab7288620247905168",
+  "folds": 10,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "grouping": false,
+  "pca_components": 200,
+  "k_stages": [
+    25,
+    50,
+    100,
+    150,
+    200,
+    250
+  ],
+  "model_sha256": {
+    "building_0.joblib": "9bc5d06ec781bcf04a79b9fe12e552b8d3aa2c1b6a5a83029a4dc78430e8e8cf",
+    "building_1.joblib": "4ff5c07ec7fe0cd18d0d4b7a5ca122352f48e3d2a5ad189df5ba8190f288b281",
+    "building_2.joblib": "f021000735f330fe938d81a217c8008799b2c3d116dad25c6da581d67a629291",
+    "combined.joblib": "842c2fe14da13acee2ad1e756a4921a55129089404ccbcc90897c6dd6bc2c87f"
+  },
+  "partitions": {
+    "building_wise": {
+      "0": {
+        "trees": 200,
+        "max_features": "sqrt",
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "random_state": 42,
+        "training_rows": 5249,
+        "mean_selection_cv_accuracy": 0.9988186841148672
+      },
+      "1": {
+        "trees": 200,
+        "max_features": "sqrt",
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "random_state": 42,
+        "training_rows": 5196,
+        "mean_selection_cv_accuracy": 0.9989606477533652
+      },
+      "2": {
+        "trees": 200,
+        "max_features": "sqrt",
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "random_state": 42,
+        "training_rows": 9492,
+        "mean_selection_cv_accuracy": 0.9994099932450573
+      }
+    },
+    "combined": {
+      "All": {
+        "trees": 200,
+        "max_features": "sqrt",
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "random_state": 42,
+        "training_rows": 19937,
+        "mean_selection_cv_accuracy": 0.9966293461417872
+      }
+    }
+  },
+  "origin": "Existing executed five-times-ten-fold run; repackaged, not retrained.",
+  "cv_results_sha256": "053798e6ac9c156a615f726a1a3508170074e94f79f0a6a28351705af3f2ed77",
+  "cv_predictions_sha256": "e18440645ccdf3fc1d5eadb60ceb5544f391d4619631b53a8b243cbc57de0b3b"
+}
